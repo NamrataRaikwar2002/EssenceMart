@@ -1,0 +1,183 @@
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 0px 15px 10px -15px var(--shadow-color);
+    padding: 1rem;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    justify-content: space-between;
+    height: 4rem;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
+
+.navbar_link {
+    font-weight: bold;
+}
+
+.search_bar {
+    padding: 0.5rem;
+    border: none;
+    width: 25rem;
+    text-decoration: none;
+    border-radius: var(--search-radius);
+}
+
+.search_icon {
+    background-color: white;
+    border-radius: var(--search-radius);
+    padding-right: 0.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.nav_icon {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.nav_btn {
+    background-color: var(--secondary-color);
+    padding: 0.5rem;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.nav_rightside {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    padding-right: 2rem;
+}
+
+.nav_btn:hover {
+    opacity: var(--btn-opacity);
+}
+
+.all_features,
+.new_offers_div {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    background-color: var(--bg-color);
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+.icon_badge {
+    display: flex;
+    justify-self: center;
+    width: 1rem;
+    height: 1rem;
+    font-size: 0.7rem;
+    align-self: center;
+    font-weight: bolder;
+    color: white;
+    border-radius: 50%;
+    background-color: var(--alertError-color);
+}
+
+
+.wishlist_icon_home_badge {
+    position: absolute;
+    top: -0.1rem;
+    right: 5rem;
+}
+
+.cart_icon_home_badge {
+    position: absolute;
+    top: -0.1rem;
+    right: 1.5rem;
+}
+
+.textForPrimaryColor {
+    color: var(--primary-color);
+}
+
+Link {
+    cursor: pointer;
+}
+
+.productsText {
+    font-size: 1.2rem;
+}
+
+.feviconImg {
+    width: 2.5rem;
+}
+
+.appNameWithIcon {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+@media screen and (max-width: 998px) {
+    body {
+        font-size: small;
+    }
+
+    .navigation {
+        height: 8rem;
+    }
+
+    .search_bar {
+        width: 20rem;
+    }
+
+    .landing_area {
+        font-size: small;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width:1030px) {
+    .search_bar {
+        width: 20rem;
+
+    }
+}
+
+@media screen and (max-width:768px) {
+    .search_bar {
+        width: 10rem;
+    }
+
+    .logoutBtn {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width:555px) {
+    .search_bar {
+        width: 15rem;
+        padding: 0.5rem;
+    }
+}
+
+@media screen and (max-width:370px) {
+    .search_bar {
+        width: 5rem;
+        padding: 0.5rem;
+    }
+
+}
+
+@media screen and (min-width:769px) {
+    .hamburgerIcon {
+        display: none;
+    }
+
+    .logoutIcon {
+        display: none;
+    }
+
+    .search_bar {
+        width: 25rem;
+        padding: 0.5rem;
+    }
+}

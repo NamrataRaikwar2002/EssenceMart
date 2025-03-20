@@ -1,0 +1,49 @@
+.login_box {
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.login_div {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1rem;
+    box-shadow: var(--box-shadow);
+    width: 28rem;
+    margin-top: 4rem;
+}
+
+.login_input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--secondary-color);
+}
+
+.createAccount {
+    display: flex;
+    justify-content: center;
+}
+
+.login_signup_link {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.showHideDiv {
+    border: 1px solid var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+.hideIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.passwordInputDiv {
+    border: none;
+}
