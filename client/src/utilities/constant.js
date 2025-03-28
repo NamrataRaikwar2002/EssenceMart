@@ -1,1 +1,1 @@
-export const API_URL = 'https://skymart-server.cyclic.app';
+export const API_URL = 'http://localhost:5001';

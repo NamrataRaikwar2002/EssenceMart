@@ -36,20 +36,31 @@ export const ProductList = () => {
   const { filterState } = useFilter()
   const { priceValue } = filterState
 
-  const dataFetch = async () => {
-    try {
-      setloader(true)
-      const response = await axios.get(`${API_URL}/products`)
-      setRes(response.data.products)
-      setloader('')
-      setSearchResult(response.data.products)
-      return response.data.products
-    } catch (error) {
-      console.error(error.message,'error')
-    }
-  }
+  useEffect(() => {
+    let isMounted = true; 
 
-  useEffect(dataFetch, [])
+    const dataFetch = async () => {
+        try {
+            setloader(true);
+            const response = await axios.get(`${API_URL}/products/`);
+            console.log(response,'hereiresewe')
+            if (isMounted) { 
+                setRes(response.data.products);
+                setloader(false);
+                setSearchResult(response.data.products);
+            }
+        } catch (error) {
+            console.error(error.message, 'error');
+        }
+    };
+
+    dataFetch();
+
+    return () => {
+        console.log("Cleaning up!"); 
+        isMounted = false; // ✅ Prevents state updates on unmounted components
+    };
+}, []); 
 
   const priceRangeItems = PriceFilter(searchResult, filterState)
   const ratingItems = RatingFilter(priceRangeItems, filterState)
@@ -66,6 +77,7 @@ export const ProductList = () => {
 
   const addToWishlistHandler = (product) => {
     const checkProduct = wishList.some((item) => item._id === product._id)
+    console.log(token,'tokenherer', checkProduct)
     if (token) {
       if (!checkProduct) {
         addToWishlist(product, token, productDispatch)

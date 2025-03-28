@@ -1,7 +1,6 @@
 // @ts-nocheck
 import React from 'react'
 import { useFilter } from '../../../hooks/context/filterContext'
-// import { products } from '../../../backend/db/products'
 
 export const Filter = ({ sideBar, setsideBar }) => {
   const { filterState, filterDispatch } = useFilter()
@@ -21,7 +20,7 @@ export const Filter = ({ sideBar, setsideBar }) => {
         <h3>Filters</h3>
         <button
           className="filter_clear"
-          onClick={() => filterDispatch({ type: 'CLEAR', payload: products })}
+          onClick={() => filterDispatch({ type: 'CLEAR', payload: {} })}
         >
           clear
         </button>
