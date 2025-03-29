@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 export const Wishlist = () => {
   const { productState } = useProduct()
   const { wishList } = productState
-
+  
   return (
     <main className="wishlist_page">
       <Navbar />

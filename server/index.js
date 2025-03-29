@@ -11,9 +11,9 @@ const wishlistRouter = require('./routes/wishlist.router');
 const { verifyAuth } = require('./middlewares/verifyAuth');
 const {addProductsToCollection} = require('./models/products.model');
 const app = express();
-
+app.use(express.json());
+app.use(express.urlencoded({extended:true}))
 dotenv.config()
-
 app.use(bodyParser.json())
 app.use(cors())
 const PORT = 5001;
@@ -29,7 +29,7 @@ app.use('/products', productRouter)
 
 app.use(verifyAuth)
 app.use('/cart', cartRouter);
-app.use('/user',userRouter);
+app.use('/user', userRouter);
 app.use('/wishlist', wishlistRouter);
 
 process.on('uncaughtException', (err, origin) => {

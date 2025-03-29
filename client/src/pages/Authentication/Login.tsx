@@ -18,7 +18,6 @@ export const Login = () => {
   const location = useLocation()
 
   const guestUserHandler = (e) => {
-    console.log(e,'fjwoeifow')
     e.preventDefault()
     setLoginUser({
       ...loginUser,
@@ -39,6 +38,7 @@ export const Login = () => {
           email,
           password,
         })
+        console.log(response,'userlogintoken')
         if (response.status === 200) {
           localStorage.setItem('user', JSON.stringify(response.data.foundUser))
           localStorage.setItem('token', response.data.token)
@@ -46,10 +46,11 @@ export const Login = () => {
             type: 'LOGIN',
             payload: {
               user: response.data.foundUser,
-              token: response.data.encodedToken,
+              token: response.data.token,
             },
           })
-          navigate(location?.state?.from?.pathname || -1, { replace: true })
+          // navigate(location?.state?.from?.pathname || -1, { replace: true })
+          navigate('/product-list')
           toast.success('LoggedIn successfully  ')
         } else {
           toast.error('Something went wrong')

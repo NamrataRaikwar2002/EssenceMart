@@ -4,7 +4,7 @@ mongoose.set("strictQuery", true);
 const connectToDatabase = async () => {
   try {
     await mongoose.connect(
-      'mongodb+srv://namrata21:namrata@cluster0.q7eun.mongodb.net/',{
+      process.env.MONGODB_STRING,{
       }
     );
     console.log("connected succesfully");

@@ -13,7 +13,7 @@ const addToCart = async (product, token, productDispatch) => {
       },
     )
     console.log(response)
-    productDispatch({ type: 'ADD_TO_CART', payload: response.data.cart })
+    productDispatch({ type: 'ADD_TO_CART', payload: response.data.user.products })
   } catch (error) {
     console.error(error)
   }

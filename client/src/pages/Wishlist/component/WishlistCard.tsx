@@ -6,6 +6,7 @@ import { useAuth } from '../../../hooks/context/authContext'
 export const WishlistCard = () => {
   const { productState, productDispatch } = useProduct()
   const { wishList } = productState
+  console.log(wishList,'wishlisthsate')
   const {
     userDetail: { token },
   } = useAuth()

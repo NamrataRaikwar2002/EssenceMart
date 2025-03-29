@@ -6,7 +6,16 @@ const {
 const wishlistSchema = new Schema({
     userId: String,
     products: [{
-        _id: String
+        _id: String,
+        productImg: String,
+        title: String,
+        price: Number,
+        prePrice: Number,
+        discount: String,
+        rating: Number,
+        category: String,
+        quantity: Number,
+        __v: Number
     }]
 
 })

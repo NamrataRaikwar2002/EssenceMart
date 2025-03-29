@@ -77,7 +77,7 @@ export const ProductList = () => {
 
   const addToWishlistHandler = (product) => {
     const checkProduct = wishList.some((item) => item._id === product._id)
-    console.log(token,'tokenherer', checkProduct)
+    console.log(product,'producttokenherer')
     if (token) {
       if (!checkProduct) {
         addToWishlist(product, token, productDispatch)

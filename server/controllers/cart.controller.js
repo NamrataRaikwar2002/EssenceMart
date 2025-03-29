@@ -8,10 +8,7 @@ const getAllProductsInCart = async (req, res) => {
         } = req.user;
         const cart = await Cart.findById(userId)
         const cartProducts = cart.products.map((productItem) => {
-            return {
-                _id:productItem._id,
-                quantity: productItem.quantity
-            }
+            return productItem
         })
         const finalCart = {
             _id: cart._id,
@@ -41,7 +38,7 @@ const addProductsInCart = async (req, res) => {
                 res.status(200).json({message:"new cart created and product added", cart:newCart})
             }
             else{
-                const newProduct ={_id:product._id, quantity:1}
+                const newProduct = product
                 user.products.push(newProduct);
                 await user.save();
                 res.status(200).json({message:"Product added to exisitng cart", user})

@@ -2,7 +2,8 @@
 export const productReducer = (productState, productAction) => {
   const { cart, wishList } = productState
   const cartItem = cart.find((item) => item._id === productAction.payload._id)
-  const wishListItem = wishList.find(
+  console.log(wishList,'hereisloggg')
+  const wishListItem = wishList?.find(
     (item) => item._id === productAction.payload._id,
   )
   switch (productAction.type) {
