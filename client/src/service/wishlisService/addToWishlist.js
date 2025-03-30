@@ -1,12 +1,18 @@
 import axios from 'axios'
-import { API_URL } from '../../utilities/constant'
+import {
+  API_URL
+} from '../../utilities/constant'
 
 const addToWishlist = async (product, token, productDispatch) => {
   try {
     const response = await axios.post(
-      `${API_URL}/wishlist`,
-      { product },
-      { headers: { authorization: token } },
+      `${API_URL}/wishlist`, {
+        product
+      }, {
+        headers: {
+          authorization: token
+        }
+      },
     )
     productDispatch({
       type: 'ADD_TO_WISHLIST',
@@ -16,4 +22,6 @@ const addToWishlist = async (product, token, productDispatch) => {
     console.error(error)
   }
 }
-export { addToWishlist }
+export {
+  addToWishlist
+}

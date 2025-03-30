@@ -1,59 +1,63 @@
 // @ts-nocheck
 
-import React, { useState } from 'react'
-import './Navbar.css'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { useProduct } from '../../hooks/context/productContext'
-import { toast } from 'react-toastify'
-import { useAuth } from '../../hooks/context/authContext'
+import React, { useState } from "react";
+import "./Navbar.css";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useProduct } from "../../hooks/context/productContext";
+import { toast } from "react-toastify";
+import { useAuth } from "../../hooks/context/authContext";
 
 type NavabarType = {
-  setSearchResult: React.Dispatch<React.SetStateAction<never[]>>,
-  products:never[],
-  sideBar:boolean,
-  setsideBar:React.Dispatch<React.SetStateAction<boolean>>
+  setSearchResult: React.Dispatch<React.SetStateAction<never[]>>;
+  products: never[];
+  sideBar: boolean;
+  setsideBar: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-}
-
-const Navbar = ({ setSearchResult, products, sideBar, setsideBar }:NavabarType) => {
-  const navigate = useNavigate()
-  const { productState } = useProduct()
-  const { cart, wishList } = productState
-  const { userDetail, userDispatch } = useAuth()
+const Navbar = ({
+  setSearchResult,
+  products,
+  sideBar,
+  setsideBar,
+}: NavabarType) => {
+  const navigate = useNavigate();
+  const { productState } = useProduct();
+  const { cart, wishList } = productState;
+  const { userDetail, userDispatch } = useAuth();
   // const { token } = userDetail
-  const [searchInput, setSearchInput] = useState('')
-  const location = useLocation()
+  const [searchInput, setSearchInput] = useState("");
+  const location = useLocation();
 
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
 
   const logutHandler = () => {
-    localStorage.removeItem('user')
-    localStorage.removeItem('token')
-    userDispatch({ type: 'LOGOUT' })
-    toast.success('LoggedOut successfully')
-    navigate('/')
-  }
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    userDispatch({ type: "LOGOUT" });
+    toast.success("LoggedOut successfully");
+    navigate("/");
+  };
 
   const searchInputHandler = (e) => {
-    setSearchInput(e.target.value)
-    if (e.target.value !== '') {
+    setSearchInput(e.target.value);
+    if (e.target.value !== "") {
       const findItem = products.filter((item) =>
-        item.title.toLowerCase().includes(searchInput.toLowerCase()),
-      )
-      setSearchResult(findItem)
+        item.title.toLowerCase().includes(searchInput.toLowerCase())
+      );
+      setSearchResult(findItem);
     } else {
-      setSearchResult(products)
+      setSearchResult(products);
     }
-  }
+  };
 
   const hamburgurHandler = () => {
-    setsideBar(!sideBar)
-  }
+    setsideBar(!sideBar);
+  };
   return (
     <div className="nav_div">
       <nav className="navigation">
         <Link to="/" className="appNameWithIcon">
-          <img src="/fevicon.ico" alt="fevicon" className="feviconImg" />
+          <img src="/favicon.ico" alt="fevicon" className="feviconImg" />
           <h2 className="textForPrimaryColor">EssenceMart</h2>
         </Link>
         <div className="search_icon">
@@ -63,13 +67,13 @@ const Navbar = ({ setSearchResult, products, sideBar, setsideBar }:NavabarType) 
             placeholder="Search..."
             name="search"
             value={searchInput}
-            onClick={() => navigate('/product-list')}
+            onClick={() => navigate("/product-list")}
             onChange={(e) => searchInputHandler(e)}
           />
           <i className="fa fa-search"></i>
         </div>
         <aside className="nav_rightside">
-          {location.pathname === '/product-list' ? (
+          {location.pathname === "/product-list" ? (
             <i
               className="fa-solid fa-bars nav_icon hamburgerIcon"
               onClick={hamburgurHandler}
@@ -119,8 +123,7 @@ const Navbar = ({ setSearchResult, products, sideBar, setsideBar }:NavabarType) 
         </aside>
       </nav>
     </div>
-  )
-}
+  );
+};
 
-export { Navbar }
-
+export { Navbar };

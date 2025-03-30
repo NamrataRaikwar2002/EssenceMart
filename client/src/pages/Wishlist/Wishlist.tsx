@@ -1,16 +1,16 @@
 // @ts-nocheck
-import React from 'react'
-import { emptyWishlist } from '../../assets'
-import { Navbar } from '../../components'
-import './Wishlist.css'
-import { WishlistCard } from './component/WishlistCard'
-import { useProduct } from '../../hooks/context/productContext'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { emptyWishlist } from "../../assets";
+import { Navbar } from "../../components";
+import "./Wishlist.css";
+import { WishlistCard } from "./component/WishlistCard";
+import { useProduct } from "../../hooks/context/productContext";
+import { Link } from "react-router-dom";
 
 export const Wishlist = () => {
-  const { productState } = useProduct()
-  const { wishList } = productState
-  
+  const { productState } = useProduct();
+  const { wishList } = productState;
+
   return (
     <main className="wishlist_page">
       <Navbar />
@@ -41,6 +41,5 @@ export const Wishlist = () => {
         </div>
       </section>
     </main>
-  )
-}
-
+  );
+};

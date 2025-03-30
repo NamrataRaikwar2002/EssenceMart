@@ -9,7 +9,10 @@ const Fotter = () => {
           <p>Your Account</p>
         </div>
         <div className="footer_link_div">
-          <a href="https://github.com/NamrataRaikwar2002" className="footer_link">
+          <a
+            href="https://github.com/NamrataRaikwar2002"
+            className="footer_link"
+          >
             <i className="fa-brands fa-github fotter_icon"></i>
           </a>
           <a
@@ -27,8 +30,7 @@ const Fotter = () => {
         </div>
       </footer>
     </>
-  )
-}
+  );
+};
 
-export { Fotter }
-
+export { Fotter };
