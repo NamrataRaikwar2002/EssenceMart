@@ -1,6 +1,6 @@
 // @ts-nocheck
-import './Home.css'
-import { Fotter, Navbar } from '../../components'
+import "./Home.css";
+import { Fotter, Navbar } from "../../components";
 import {
   bodySprayImg,
   deodorantImg,
@@ -10,9 +10,9 @@ import {
   newKsImg,
   newsecretImg,
   perfumeImg,
-} from '../../assets'
-import { LandingFeature } from './component/LandingFeature'
-import { NewArrival } from './component/NewArrival'
+} from "../../assets";
+import { LandingFeature } from "./component/LandingFeature";
+import { NewArrival } from "./component/NewArrival";
 
 const Home = () => {
   return (
@@ -80,8 +80,7 @@ const Home = () => {
       </section>
       <Fotter />
     </>
-  )
-}
+  );
+};
 
-export { Home }
-
+export { Home };

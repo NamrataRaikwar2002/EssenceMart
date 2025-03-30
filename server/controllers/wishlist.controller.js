@@ -1,10 +1,16 @@
-const { Wishlist } = require("../models/wishlist.model");
+const {
+  Wishlist
+} = require("../models/wishlist.model");
 
 const getProductsInWishlist = async (req, res) => {
   try {
-    const { userId } = req.user;
+    const {
+      userId
+    } = req.user;
     const user = await Wishlist.findById(userId);
-    const { products } = user;
+    const {
+      products
+    } = user;
     res.status(200).json({
       products,
     });
@@ -18,8 +24,12 @@ const getProductsInWishlist = async (req, res) => {
 
 const addProductInWishlist = async (req, res) => {
   try {
-    const { userId } = req.user;
-    const { product } = req.body;
+    const {
+      userId
+    } = req.user;
+    const {
+      product
+    } = req.body;
     console.log(product, "insereversdfo", req);
     const user = await Wishlist.findById(userId);
     if (!user) {
@@ -27,7 +37,7 @@ const addProductInWishlist = async (req, res) => {
         _id: userId,
         products: [product],
       });
-      console.log(newWishlist,'jfoiejfowe')
+      console.log(newWishlist, 'jfoiejfowe')
       await newWishlist.save();
       res.status(200).json({
         messge: "New wishlist created and product added",
@@ -35,7 +45,7 @@ const addProductInWishlist = async (req, res) => {
       });
     } else {
       const newProduct = product;
-      console.log(newProduct,'jfoiejfowenewProduct')
+      console.log(newProduct, 'jfoiejfowenewProduct')
       user.products.push(newProduct);
       await user.save();
       res.status(200).json({
@@ -53,8 +63,12 @@ const addProductInWishlist = async (req, res) => {
 
 const deleteProductFromWishlist = async (req, res) => {
   try {
-    const { userId } = req.user;
-    const { productId } = req.params;
+    const {
+      userId
+    } = req.user;
+    const {
+      productId
+    } = req.params;
     const user = await Wishlist.findById(userId);
     await user.products.remove(productId);
     await user.save();

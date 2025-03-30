@@ -1,35 +1,34 @@
 // @ts-nocheck
-import React, { useState } from 'react';
-import { Navbar } from '../../components';
-import './authentication.css';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
-import { useAuth } from '../../hooks/context/authContext';
-import { toast } from 'react-toastify';
-import { API_URL } from '../../utilities/constant';
-
+import React, { useState } from "react";
+import { Navbar } from "../../components";
+import "./authentication.css";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "../../hooks/context/authContext";
+import { toast } from "react-toastify";
+import { API_URL } from "../../utilities/constant";
 
 export const Login = () => {
-  const navigate = useNavigate()
-  const [inputType, setinputType] = useState('password')
-  const [loginUser, setLoginUser] = useState({ email: '', password: '' })
-  const { email, password } = loginUser
-  const { userDispatch } = useAuth()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const [inputType, setinputType] = useState("password");
+  const [loginUser, setLoginUser] = useState({ email: "", password: "" });
+  const { email, password } = loginUser;
+  const { userDispatch } = useAuth();
+  const location = useLocation();
 
   const guestUserHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setLoginUser({
       ...loginUser,
-      email: 'admin@gmail.com',
-      password: 'admin123',
-    })
-  }
+      email: "admin@gmail.com",
+      password: "admin123",
+    });
+  };
 
   const loginHandler = (e) => {
-    e.preventDefault()
-    loginUserHandler(email, password)
-  }
+    e.preventDefault();
+    loginUserHandler(email, password);
+  };
 
   const loginUserHandler = async (email, password) => {
     if (email && password) {
@@ -37,31 +36,31 @@ export const Login = () => {
         const response = await axios.post(`${API_URL}/api/auth/login`, {
           email,
           password,
-        })
-        console.log(response,'userlogintoken')
+        });
+        console.log(response, "userlogintoken");
         if (response.status === 200) {
-          localStorage.setItem('user', JSON.stringify(response.data.foundUser))
-          localStorage.setItem('token', response.data.token)
+          localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+          localStorage.setItem("token", response.data.token);
           userDispatch({
-            type: 'LOGIN',
+            type: "LOGIN",
             payload: {
               user: response.data.foundUser,
               token: response.data.token,
             },
-          })
+          });
           // navigate(location?.state?.from?.pathname || -1, { replace: true })
-          navigate('/product-list')
-          toast.success('LoggedIn successfully  ')
+          navigate("/product-list");
+          toast.success("LoggedIn successfully  ");
         } else {
-          toast.error('Something went wrong')
+          toast.error("Something went wrong");
         }
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     } else {
-      toast.warning('Please fill the fields')
+      toast.warning("Please fill the fields");
     }
-  }
+  };
 
   return (
     <main className="login_page">
@@ -97,12 +96,12 @@ export const Login = () => {
               />
               <div
                 onClick={() =>
-                  inputType === 'text'
-                    ? setinputType('password')
-                    : setinputType('text')
+                  inputType === "text"
+                    ? setinputType("password")
+                    : setinputType("text")
                 }
               >
-                {inputType === 'text' ? (
+                {inputType === "text" ? (
                   <p className="hideIcon">
                     <i className="fa-regular fa-eye"></i>
                   </p>
@@ -134,6 +133,5 @@ export const Login = () => {
         </form>
       </section>
     </main>
-  )
-}
-
+  );
+};

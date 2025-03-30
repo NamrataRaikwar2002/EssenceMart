@@ -25,13 +25,10 @@ const productContext = createContext(null);
 const useProduct = () => useContext(productContext);
 
 const ProductProvider = ({ children }) => {
-  const [productState, productDispatch] = useReducer(
-    productReducer,
-    {
-      cart: [],
-      wishList: [],
-    }
-  );
+  const [productState, productDispatch] = useReducer(productReducer, {
+    cart: [],
+    wishList: [],
+  });
   return (
     <productContext.Provider value={{ productState, productDispatch }}>
       {children}
@@ -40,4 +37,3 @@ const ProductProvider = ({ children }) => {
 };
 
 export { useProduct, ProductProvider };
-

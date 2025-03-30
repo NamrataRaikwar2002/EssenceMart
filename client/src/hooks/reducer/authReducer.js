@@ -15,7 +15,11 @@ export const authReducer = (userDetail, userAction) => {
       }
     }
     case 'LOGOUT': {
-      return { ...userDetail, user: {}, token: '' }
+      return {
+        ...userDetail,
+        user: {},
+        token: ''
+      }
     }
     default:
       return userDetail

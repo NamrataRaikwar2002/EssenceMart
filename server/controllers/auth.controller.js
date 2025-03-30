@@ -19,7 +19,7 @@ const signupUser = async (req, res) => {
         email: email,
         password: CryptoJs.AES.encrypt(password, process.env.SECRET_KEY).toString()
     });
-  console.log(newUser,'jnewiroiwero')
+    console.log(newUser, 'jnewiroiwero')
 
     try {
         const user = await User.find({
