@@ -2,6 +2,7 @@
 import React from 'react'
 import { useProduct } from '../../../hooks/context/productContext'
 import { removeFromCart } from '../../../service/cartService/removeFromCart'
+import { moveToWishlist } from '../../../service/cartService/moveToWishlist'
 import { useAuth } from '../../../hooks/context/authContext'
 
 export const CartCard = () => {
@@ -13,6 +14,10 @@ export const CartCard = () => {
 
   const removeFromCartHandler = (_id) => {
     removeFromCart(_id, token, productDispatch)
+  }
+
+  const moveToWishlistHandler = (product) => {
+    moveToWishlist(product, token, productDispatch)
   }
 
   return (
@@ -74,9 +79,7 @@ export const CartCard = () => {
                   <button
                     className="e_com_btn wishlist_btn"
                     onClick={() =>
-                      productDispatch({
-                        type: 'MOVE_TO_WISHLIST',
-                        payload: {
+                      moveToWishlistHandler( {
                           productImg: productImg,
                           price: price,
                           title: title,
@@ -84,8 +87,7 @@ export const CartCard = () => {
                           discount: discount,
                           rating: rating,
                           _id: _id,
-                        },
-                      })
+                        })
                     }
                   >
                     Move to Wishlist

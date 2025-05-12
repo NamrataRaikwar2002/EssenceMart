@@ -80,5 +80,15 @@ export const productReducer = (productState, productAction) => {
             : item
         ),
       };
+      case 'GET_CART':
+      return{
+        ...productState,
+        cart:productAction.payload
+      }
+      case 'GET_WISHLIST':
+      return{
+        ...productState,
+        wishList:productAction.payload
+      }
   }
 };

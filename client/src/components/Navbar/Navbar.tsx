@@ -1,11 +1,14 @@
 // @ts-nocheck
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useProduct } from "../../hooks/context/productContext";
 import { toast } from "react-toastify";
 import { useAuth } from "../../hooks/context/authContext";
+import axios from "axios";
+import { API_URL } from "../../utilities/constant";
+
 
 type NavabarType = {
   setSearchResult: React.Dispatch<React.SetStateAction<never[]>>;
@@ -21,14 +24,68 @@ const Navbar = ({
   setsideBar,
 }: NavabarType) => {
   const navigate = useNavigate();
-  const { productState } = useProduct();
+  const { productState, productDispatch } = useProduct();
   const { cart, wishList } = productState;
   const { userDetail, userDispatch } = useAuth();
-  // const { token } = userDetail
   const [searchInput, setSearchInput] = useState("");
   const location = useLocation();
 
-  const token = localStorage.getItem("token");
+  const {
+    userDetail: { token },
+  } = useAuth();
+
+    useEffect(() => {
+    let isMounted = true;
+
+    const dataFetch = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/cart`, {
+        headers: {
+          authorization: token
+        },
+      });
+        const data1 = response?.data?.cart?.cart;
+        if (isMounted) {
+           productDispatch({
+             type: "GET_CART",
+             payload: data1,
+           });
+          console.log(response,'fwoeifwoeresponse')
+        }
+      
+      } catch (error) {
+        console.error(error, "errddddor");
+      }
+    };
+    const getwishlist = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/wishlist`, {
+        headers: {
+          authorization: token
+        },
+      });
+        const data1 = response?.data?.products;
+        if (isMounted) {
+           productDispatch({
+             type: "GET_WISHLIST",
+             payload: data1,
+           });
+          
+        }
+      } catch (error) {
+        console.error(error, "error");
+      }
+    };
+
+    dataFetch();
+    getwishlist();
+
+
+    return () => {
+      console.log("Cleaning up!");
+      isMounted = false; 
+    };
+  }, []);
 
   const logutHandler = () => {
     localStorage.removeItem("user");
@@ -116,8 +173,8 @@ const Navbar = ({
           </Link>
           <Link to="/cart-page">
             <i className="fas fa-shopping-cart nav_icon cart_nav_icon"></i>
-            {cart.length > 0 && token ? (
-              <p className="cart_icon_home_badge icon_badge">{cart.length}</p>
+            {cart?.length > 0 && token ? (
+              <p className="cart_icon_home_badge icon_badge">{cart?.length}</p>
             ) : null}
           </Link>
         </aside>
