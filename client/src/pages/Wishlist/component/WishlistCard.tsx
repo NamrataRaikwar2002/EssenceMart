@@ -2,6 +2,7 @@
 import React from 'react'
 import { useProduct } from '../../../hooks/context/productContext'
 import { removeFromWishlist } from '../../../service/wishlisService/removeFromWishlist'
+import { moveToCart } from '../../../service/wishlisService/moveToCart'
 import { useAuth } from '../../../hooks/context/authContext'
 export const WishlistCard = () => {
   const { productState, productDispatch } = useProduct()
@@ -14,6 +15,11 @@ export const WishlistCard = () => {
   const removeWishlistHandler = (_id) => {
     removeFromWishlist(_id, token, productDispatch)
   }
+
+   const moveToCartHandler = (product) => {
+    moveToCart(product, token, productDispatch)
+  }
+  
   return (
     <>
       {wishList.map(
@@ -53,9 +59,7 @@ export const WishlistCard = () => {
               <button
                 className="card_btn primary_selected_btn productAddToCartbtn"
                 onClick={() =>
-                  productDispatch({
-                    type: 'MOVE_TO_CART',
-                    payload: {
+                  moveToCartHandler({
                       productImg: productImg,
                       price: price,
                       title: title,
@@ -64,8 +68,7 @@ export const WishlistCard = () => {
                       rating: rating,
                       quantity: quantity,
                       _id: _id,
-                    },
-                  })
+                    })
                 }
               >
                 Move to Cart

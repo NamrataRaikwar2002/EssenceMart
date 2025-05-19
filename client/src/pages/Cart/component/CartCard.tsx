@@ -3,6 +3,8 @@ import React from 'react'
 import { useProduct } from '../../../hooks/context/productContext'
 import { removeFromCart } from '../../../service/cartService/removeFromCart'
 import { moveToWishlist } from '../../../service/cartService/moveToWishlist'
+import { updateCart } from '../../../service/cartService/updateCart'
+
 import { useAuth } from '../../../hooks/context/authContext'
 
 export const CartCard = () => {
@@ -18,6 +20,10 @@ export const CartCard = () => {
 
   const moveToWishlistHandler = (product) => {
     moveToWishlist(product, token, productDispatch)
+  }
+
+  const updateCartProduct = (product) => {
+    updateCart(product, token, productDispatch)
   }
 
   return (
@@ -50,7 +56,7 @@ export const CartCard = () => {
                       className="quantity_btn decrease_btn"
                       onClick={() =>
                         productDispatch({
-                          type: 'DECREASE_QUANTITY',
+                          type: "DECREASE_QUANTITY",
                           payload: { _id: _id, quantity: quantity },
                         })
                       }
@@ -60,11 +66,22 @@ export const CartCard = () => {
                     <p className="quantity_input">{quantity}</p>
                     <button
                       className="quantity_btn"
-                      onClick={() =>
-                        productDispatch({
-                          type: 'INCREASE_QUANTITY',
-                          payload: { _id: _id, quantity: quantity },
-                        })
+                      onClick={
+                        () =>
+                          updateCartProduct({
+                            productImg,
+                            price,
+                            title,
+                            prePrice,
+                            rating,
+                            discount,
+                            quantity,
+                            _id,
+                          })
+                        // productDispatch({
+                        //   type: 'INCREASE_QUANTITY',
+                        //   payload: { _id: _id, quantity: quantity },
+                        // })
                       }
                     >
                       +
@@ -79,15 +96,15 @@ export const CartCard = () => {
                   <button
                     className="e_com_btn wishlist_btn"
                     onClick={() =>
-                      moveToWishlistHandler( {
-                          productImg: productImg,
-                          price: price,
-                          title: title,
-                          prePrice: prePrice,
-                          discount: discount,
-                          rating: rating,
-                          _id: _id,
-                        })
+                      moveToWishlistHandler({
+                        productImg: productImg,
+                        price: price,
+                        title: title,
+                        prePrice: prePrice,
+                        discount: discount,
+                        rating: rating,
+                        _id: _id,
+                      })
                     }
                   >
                     Move to Wishlist
@@ -95,7 +112,7 @@ export const CartCard = () => {
                 </div>
               </section>
             </div>
-          )
+          );
         },
       )}
     </>

@@ -101,15 +101,19 @@ const updateProductInCart = async (req, res) => {
         } = req.params;
 
         const user = await Cart.findById(userId);
-        const product = user.products.map((product) => {
-            if (product._id === productId) {
-                return (product.quantity = quantity)
+        const updatedproducts = user.products.map((product) => {
+            if (product._id.toString() === productId) {
+               product.quantity = quantity
             }
             return product;
         })
         await user.save();
+        // res.status(200).json({
+        //     user
+        // })
+        console.log(updatedproducts,'hereisthere')
         res.status(200).json({
-            user
+            updatedproducts
         })
     } catch (error) {
         res.status(500).json({
