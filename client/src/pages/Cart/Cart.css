@@ -32,7 +32,6 @@
     flex-direction: column;
     box-shadow: var(--box-shadow);
     width: 17rem;
-    height: 21.5rem;
     padding: 1rem;
     font-size: 1rem;
     gap: 1rem;
@@ -119,7 +118,6 @@
 
 @media screen and (max-width: 1000px) {
     .horizontal_card {
-        height: 14rem;
     }
 
 }
