@@ -23,7 +23,10 @@ export const CartCard = () => {
   }
 
   const updateCartProduct = (product) => {
-    updateCart(product, token, productDispatch)
+     productDispatch({
+       type: "INCREASE_QUANTITY",
+       payload: { _id: product?._id, quantity: product?.quantity },
+     });
   }
 
   return (

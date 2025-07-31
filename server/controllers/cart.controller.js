@@ -101,13 +101,20 @@ const updateProductInCart = async (req, res) => {
         } = req.params;
 
         const user = await Cart.findById(userId);
-        const updatedproducts = user.products.map((product) => {
-            if (product._id.toString() === productId) {
-               product.quantity = quantity
-            }
-            return product;
-        })
-        await user.save();
+        // const updatedproducts = user.products.map((product) => {
+        //     if (product._id.toString() === productId) {
+        //        product.quantity = quantity
+        //     }
+        //     return product;
+        // })
+
+         const updatedproducts = user.products.find(
+           (product) => product._id.toString() === productId
+         );
+         console.log(quantity,'weroewirjoeirwoeri')
+         updatedproducts.quantity = quantity;
+        //   user.markModified('products');
+         await user.save();
         // res.status(200).json({
         //     user
         // })

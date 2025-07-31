@@ -11,7 +11,7 @@ const updateCart = async (product, token, productDispatch) => {
     console.log(product, 'product')
     const response = await axios.post(
       `${API_URL}/cart/${id}`, {
-        product
+        quantity
       }, {
         headers: {
           authorization: token
@@ -23,10 +23,7 @@ const updateCart = async (product, token, productDispatch) => {
     //   type: 'ADD_TO_CART',
     //   payload: response.data.user.products
     // })
-     productDispatch({
-       type: "INCREASE_QUANTITY",
-       payload: { _id: id, quantity: quantity },
-     });
+    
   } catch (error) {
     console.error(error)
   }
